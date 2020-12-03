@@ -3,9 +3,9 @@ package com.chongjae.javaTraining.liveStudy.week4;
 import org.kohsuke.github.*;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,17 +35,13 @@ public class GitHubDashBoard {
                         return null;
                     }
                 })
+                .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
     }
 
-    public void removeNullInSet(Set<String> set) {
-        set.removeAll(Collections.singleton(null));
-    }
-
     public void calculateParticipationRate(Map<String, Integer> participants, int totalStudyNumber) {
-        for (Map.Entry<String, Integer> entry : participants.entrySet()) {
-            System.out.println("참여자 : " + entry.getKey() +
-                    " 참석율 : " + String.format("%.2f", (double) entry.getValue() / (double) totalStudyNumber * 100) + "%");
-        }
+        participants.forEach((key, value) ->
+                System.out.println("참여자 : " + key + " 참석율 : " + String.format("%.2f", (double) value / (double) totalStudyNumber * 100) + "%")
+        );
     }
 }
