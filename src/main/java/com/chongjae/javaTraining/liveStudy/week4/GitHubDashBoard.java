@@ -39,7 +39,7 @@ public class GitHubDashBoard {
                 .collect(Collectors.toSet());
     }
 
-    public void calculateParticipationRate(Map<String, Integer> participants, int totalStudyNumber) {
+    public void printParticipationRate(Map<String, Integer> participants, int totalStudyNumber) {
         participants.forEach((key, value) ->
                 System.out.println("참여자 : " + key + " 참석율 : " + String.format("%.2f", (double) value / (double) totalStudyNumber * 100) + "%")
         );

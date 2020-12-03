@@ -32,7 +32,7 @@ public class HomeWork1 {
             }
         }
 
-        gitHubDashBoard.calculateParticipationRate(participants, TOTAL_STUDY_NUMBER);
+        gitHubDashBoard.printParticipationRate(participants, TOTAL_STUDY_NUMBER);
     }
 
     public static Properties getProperties(String filePath) throws IOException {
