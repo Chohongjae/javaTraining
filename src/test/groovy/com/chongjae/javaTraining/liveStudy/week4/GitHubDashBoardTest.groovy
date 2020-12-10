@@ -11,7 +11,7 @@ class GitHubDashBoardTest extends Specification {
         given:
         def ownerAndRepository = "whiteship/live-study"
         when:
-        def repository = gitHubDashBoard.getRepository(ownerAndRepository)
+        def repository = gitHubDashBoard.getGitHub().getRepository(ownerAndRepository)
         then:
         repository.getName() == "live-study"
         repository.getOwnerName() == "whiteship"
@@ -20,10 +20,10 @@ class GitHubDashBoardTest extends Specification {
     def "GetIssues"() {
         given:
         def ownerAndRepository = "whiteship/live-study"
-        def repository = gitHubDashBoard.getRepository(ownerAndRepository)
+        def repository = gitHubDashBoard.getGitHub().getRepository(ownerAndRepository)
         def issueState = GHIssueState.CLOSED
         when:
-        def issues = gitHubDashBoard.getIssues(repository, issueState)
+        def issues = repository.getIssues(issueState)
         then:
         issues.size() > 0
         issues.get(issues.size() - 1).getTitle() == "1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가."
@@ -32,9 +32,9 @@ class GitHubDashBoardTest extends Specification {
     def "GetUsersWhoWroteCommentsInIssue"() {
         given:
         def ownerAndRepository = "whiteship/live-study"
-        def repository = gitHubDashBoard.getRepository(ownerAndRepository)
+        def repository = gitHubDashBoard.getGitHub().getRepository(ownerAndRepository)
         def issueState = GHIssueState.CLOSED
-        def issues = gitHubDashBoard.getIssues(repository, issueState)
+        def issues = repository.getIssues(issueState)
         when:
         def users = gitHubDashBoard.getUsersWhoWroteCommentsInIssue(issues.get(issues.size() - 1))
         then:

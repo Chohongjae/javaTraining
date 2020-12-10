@@ -20,7 +20,7 @@ public class HomeWork1 {
 
         Map<String, Integer> participants = new HashMap<>();
         GitHubDashBoard gitHubDashBoard = new GitHubDashBoard(properties.getProperty("user.oauth.token"));
-        for (GHIssue ghIssue : gitHubDashBoard.getIssues(gitHubDashBoard.getRepository(OWNER_AND_REPOSITORY), ALL)) {
+        for (GHIssue ghIssue : gitHubDashBoard.getGitHub().getRepository(OWNER_AND_REPOSITORY).getIssues(ALL)) {
             Set<String> users = gitHubDashBoard.getUsersWhoWroteCommentsInIssue(ghIssue);
 
             for (String user : users) {

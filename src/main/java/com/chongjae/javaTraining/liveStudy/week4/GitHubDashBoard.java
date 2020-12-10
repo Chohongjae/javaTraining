@@ -1,9 +1,10 @@
 package com.chongjae.javaTraining.liveStudy.week4;
 
-import org.kohsuke.github.*;
+import org.kohsuke.github.GHIssue;
+import org.kohsuke.github.GitHub;
+import org.kohsuke.github.GitHubBuilder;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -12,16 +13,12 @@ import java.util.stream.Collectors;
 public class GitHubDashBoard {
     private final GitHub gitHub;
 
+    public GitHub getGitHub() {
+        return gitHub;
+    }
+
     public GitHubDashBoard(String OAuthToken) throws IOException {
         this.gitHub = new GitHubBuilder().withOAuthToken(OAuthToken).build();
-    }
-
-    public GHRepository getRepository(String ownerAndRepository) throws IOException {
-        return gitHub.getRepository(ownerAndRepository);
-    }
-
-    public List<GHIssue> getIssues(GHRepository repository, GHIssueState issueState) throws IOException {
-        return repository.getIssues(issueState);
     }
 
     public Set<String> getUsersWhoWroteCommentsInIssue(GHIssue ghIssue) throws IOException {
