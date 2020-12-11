@@ -8,15 +8,15 @@ public class ListNode {
         this.data = data;
     }
 
-    public void setNextListNode(ListNode nextListNode) {
-        this.nextListNode = nextListNode;
-    }
-
     public int getData() {
         return data;
     }
 
     public ListNode getNextListNode() {
         return nextListNode;
+    }
+
+    public void setNextListNode(ListNode nextListNode) {
+        this.nextListNode = nextListNode;
     }
 }
