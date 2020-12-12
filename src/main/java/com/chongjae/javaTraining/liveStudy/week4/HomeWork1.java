@@ -20,19 +20,22 @@ public class HomeWork1 {
 
         Map<String, Integer> participants = new HashMap<>();
         GitHubDashBoard gitHubDashBoard = new GitHubDashBoard(properties.getProperty("user.oauth.token"));
-        for (GHIssue ghIssue : gitHubDashBoard.getGitHub().getRepository(OWNER_AND_REPOSITORY).getIssues(ALL)) {
-            Set<String> users = gitHubDashBoard.getUsersWhoWroteCommentsInIssue(ghIssue);
 
-            for (String user : users) {
-                if (participants.containsKey(user)) {
-                    participants.put(user, participants.get(user) + 1);
-                } else {
-                    participants.put(user, 1);
-                }
-            }
+        for (GHIssue ghIssue : gitHubDashBoard.getGitHub().getRepository(OWNER_AND_REPOSITORY).getIssues(ALL)) {
+            collectParticipants(participants, gitHubDashBoard.getUsersWhoWroteCommentsInIssue(ghIssue));
         }
 
         gitHubDashBoard.printParticipationRate(participants, TOTAL_STUDY_NUMBER);
+    }
+
+    public static void collectParticipants(Map<String, Integer> participants, Set<String> users) {
+        users.forEach(user -> {
+            if (participants.containsKey(user)) {
+                participants.put(user, participants.get(user) + 1);
+            } else {
+                participants.put(user, 1);
+            }
+        });
     }
 
     public static Properties getProperties(String filePath) throws IOException {
