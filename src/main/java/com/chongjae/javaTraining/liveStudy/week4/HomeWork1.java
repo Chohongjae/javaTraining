@@ -12,8 +12,8 @@ import java.util.Set;
 import static org.kohsuke.github.GHIssueState.ALL;
 
 public class HomeWork1 {
-    private static final String OWNER_AND_REPOSITORY = "whiteship/live-study";
-    private static final int TOTAL_STUDY_NUMBER = 18;
+    public static final String OWNER_AND_REPOSITORY = "whiteship/live-study";
+    public static final int TOTAL_STUDY_NUMBER = 18;
 
     public static void main(String[] args) throws IOException {
         Properties properties = getProperties("src/main/resources/secret.properties");
